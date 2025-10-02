@@ -1,12 +1,7 @@
-@font-face {
-  font-family: 'JetBrains Mono';
-  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-:root, html, body {
-  --bg: #2C3038;
+:root,
+html,
+body {
+  --bg: #2c3038;
   --fg: #e0e0e0;
   --border: rgb(104, 108, 115);
   --blue: #6db3f2;
@@ -16,7 +11,7 @@
   --red-fg: #f28c8c;
   --green-fg: #8cf2aa;
 
-    font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+  font-family: "JetBrains Mono", monospace;
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
@@ -28,7 +23,6 @@
 * {
   box-sizing: border-box;
 }
-
 
 a {
   color: var(--fg);
