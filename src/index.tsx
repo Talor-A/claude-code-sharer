@@ -11,7 +11,7 @@ type Env = {
 
 const app = new Hono<{ Bindings: Env }>();
 
-const SAMPLE_SESSION_ID = "ltsdgwsx";
+const SAMPLE_SESSION_ID = "i961tlt1";
 
 app.use(logger());
 app.use(renderer);
