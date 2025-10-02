@@ -11,8 +11,10 @@ binding = "DB"
 database_name = "claude-sessions"
 database_id = "b716eb9d-8473-4151-ac73-f1bfce4c2eaa"
 
-[[rate_limit]]
-binding = "RATE_LIMITER"
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 10, period =  10 }
 
 # wrangler.toml (wrangler v3.88.0^)
 [observability.logs]
