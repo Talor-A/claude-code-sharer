@@ -73,7 +73,7 @@ app.get("/", (c) => {
           talor
         </a>
       </footer>
-    </div>
+    </div>,
   );
 });
 
@@ -116,20 +116,20 @@ app.post(
     const createdAt = Date.now();
 
     await c.env.DB.prepare(
-      "INSERT INTO sessions (id, content, created_at) VALUES (?, ?, ?)"
+      "INSERT INTO sessions (id, content, created_at) VALUES (?, ?, ?)",
     )
       .bind(id, trimmedContent, createdAt)
       .run();
 
     return c.redirect(`/s/${id}`, 303);
-  }
+  },
 );
 
 app.get("/s/:id", async (c) => {
   const { id } = c.req.param();
 
   const row = await c.env.DB.prepare(
-    "SELECT content, created_at FROM sessions WHERE id = ?"
+    "SELECT content, created_at FROM sessions WHERE id = ?",
   )
     .bind(id)
     .first<{ content: string; created_at: number }>();
@@ -216,7 +216,7 @@ app.get("/s/:id", async (c) => {
       <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); text-align: center; font-size: 12px;">
         built by <a href="https://taloranderson.com">talor</a>
       </footer>
-    </div>
+    </div>,
   );
 });
 
