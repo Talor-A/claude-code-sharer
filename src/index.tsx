@@ -150,7 +150,7 @@ app.get('/s/:id', async (c) => {
   return c.render(
 
     <div class="container">
-      <h1>claudecode.link</h1>
+      <h1>claudecode.link<span class={'text-dim'}>/s/{id}</span></h1>
 
       <p><a href="/">← Create a new session</a></p>
 

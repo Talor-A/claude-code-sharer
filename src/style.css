@@ -98,11 +98,11 @@ button:disabled:hover {
   color: var(--border);
 }
 
-.session-content {
-  border: 2px solid var(--border);
-  padding: 20px;
-  margin: 20px 0;
+.text-dim {
+  color: var(--border);
 }
+
+
 
 .event {
   margin: 16px 0;
@@ -110,7 +110,11 @@ button:disabled:hover {
   border: 1px solid var(--border);
   white-space: pre-wrap;
   word-wrap: break-word;
-  line-height: 1;
+  line-height: 1.3;
+}
+
+.event:first-of-type.event-text {
+  line-height: 1.05;
 }
 
 .event > div {
