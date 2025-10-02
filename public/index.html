@@ -47,7 +47,8 @@
     const message = document.getElementById('message');
 
     button.addEventListener('click', async () => {
-      const content = textarea.value.trim();
+      // trim leading newlines but NOT leading whitespace!
+      const content = textarea.value.replace(/^\n+/, '')
 
       if (!content) {
         message.innerHTML = '<div class="error">Please paste some content first.</div>';
@@ -73,14 +74,8 @@
           throw new Error(data.error || 'Failed to create session');
         }
 
-        const url = `${window.location.origin}/s/${data.id}`;
-        message.innerHTML = `
-          <div class="success">
-            <p><strong>Session created!</strong></p>
-            <p>Share this link: <a href="${url}">${url}</a></p>
-          </div>
-        `;
-        textarea.value = '';
+        const url = `/s/${data.id}`;
+        window.location.href = url;
       } catch (error) {
         message.innerHTML = `<div class="error">Error: ${error.message}</div>`;
       } finally {

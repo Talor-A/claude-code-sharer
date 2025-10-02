@@ -5,4 +5,4 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "claude-sessions"
-database_id = "your-database-id"
+database_id = "b716eb9d-8473-4151-ac73-f1bfce4c2eaa"

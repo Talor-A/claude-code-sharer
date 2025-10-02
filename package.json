@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "wrangler pages dev public --compatibility-date=2024-01-01 --d1=SESSIONS",
+    "dev": "wrangler pages dev public --compatibility-date=2024-01-01",
     "build": "tsc && vite build",
     "deploy": "npm run build && wrangler pages deploy dist",
     "db:init": "wrangler d1 create claude-sessions",
-    "db:migrations": "wrangler d1 migrations apply SESSIONS --local"
+    "db:migrations": "wrangler d1 migrations apply DB --local"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20250110.0"

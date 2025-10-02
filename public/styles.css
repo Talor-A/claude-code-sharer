@@ -1,24 +1,41 @@
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('https://cdn.jsdelivr.net/gh/JetBrains/JetBrainsMono/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --bg: #2C3038;
+  --fg: #e0e0e0;
+  --border: #585A5D;
+  --blue: #6db3f2;
+  --purple: #a78bfa;
+  --green: #215C2A;
+  --red: #f87171;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
   padding: 20px;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--bg);
+  color: var(--fg);
 }
 
 a {
-  color: #00e;
+  color: var(--blue);
   text-decoration: underline;
 }
 
 a:visited {
-  color: #551a8b;
+  color: var(--purple);
 }
 
 h1 {
@@ -43,36 +60,34 @@ p {
 }
 
 textarea {
-  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
   font-size: 14px;
   width: 100%;
   min-height: 400px;
   padding: 12px;
-  border: 2px solid #000;
-  background-color: #fff;
-  color: #000;
+  border: 2px solid var(--border);
+  color: var(--fg);
   resize: vertical;
 }
 
 textarea:focus {
   outline: none;
-  border-color: #00e;
+  border-color: var(--blue);
 }
 
 button {
-  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
   font-size: 14px;
   padding: 8px 16px;
-  border: 2px solid #000;
-  background-color: #fff;
-  color: #000;
+  border: 2px solid var(--border);
+  color: var(--fg);
   cursor: pointer;
   margin-top: 12px;
 }
 
 button:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--fg);
+  color: var(--bg);
 }
 
 button:disabled {
@@ -81,40 +96,51 @@ button:disabled {
 }
 
 button:disabled:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: transparent;
+  color: var(--fg);
 }
 
 .session-content {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  border: 2px solid #000;
+  border: 2px solid var(--border);
   padding: 20px;
-  background-color: #f5f5f5;
   margin: 20px 0;
 }
 
+.event {
+  margin: 16px 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1;
+}
+
+.event-user {
+  border-left: 3px solid var(--blue);
+}
+
+.event-assistant {
+  border-left: 3px solid var(--green);
+}
+
 .error {
-  color: #d00;
+  color: var(--red);
   margin: 12px 0;
   padding: 12px;
-  border: 2px solid #d00;
-  background-color: #fee;
+  border: 2px solid var(--red);
 }
 
 .success {
-  color: #070;
+  color: var(--green);
   margin: 12px 0;
   padding: 12px;
-  border: 2px solid #070;
-  background-color: #efe;
+  border: 2px solid var(--green);
 }
 
 .info-box {
   margin: 20px 0;
   padding: 16px;
-  border: 2px solid #000;
-  background-color: #f5f5f5;
+  border: 2px solid var(--border);
 }
 
 ul {
@@ -127,6 +153,5 @@ li {
 }
 
 code {
-  background-color: #f0f0f0;
   padding: 2px 4px;
 }

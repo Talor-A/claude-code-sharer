@@ -20,6 +20,58 @@
     const sessionEl = document.getElementById('session');
     const messageEl = document.getElementById('message');
 
+    const parseSession = (text) => {
+      const lines = text.split('\n');
+      const blocks = [];
+      // type: 'text' | 'user' | 'assistant'
+      function appendLastBlock(content) {
+        if (blocks.length === 0) {
+          blocks.push({ type: 'text', content: content });
+        } else {
+          blocks[blocks.length - 1].content += '\n' + content;
+        }
+      }
+      function startNewBlock(type, content) {
+        blocks.push({ type: type, content: content });
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        if(line.startsWith('>')) {
+          // User message
+          startNewBlock('user', line);
+        } else if (line.startsWith('⏺')) {
+          // Assistant message
+          startNewBlock('assistant', line);
+        } else {
+          // Continuation of previous block or new text block
+          appendLastBlock(line);
+        }
+      }
+
+      return { blocks }
+    };
+
+    const renderSession = (blocks) => {
+      sessionEl.innerHTML = '';
+
+      blocks.forEach(block => {
+        let elt = document.createElement('pre');
+        const type = block.type;
+        elt.textContent = block.content;
+        if(type === 'text') {
+          elt.className = 'event event-text';
+        } if(type === 'user') {
+          elt.className = 'event event-user';
+        }
+        if(type === 'assistant') {
+          elt.className = 'event event-assistant';
+        }
+        sessionEl.appendChild(elt);
+      });
+    };
+
     async function loadSession() {
       const pathParts = window.location.pathname.split('/');
       const id = pathParts[pathParts.length - 1];
@@ -37,7 +89,8 @@
           throw new Error(data.error || 'Failed to load session');
         }
 
-        sessionEl.textContent = data.content;
+        const parsed = parseSession(data.content);
+        renderSession(parsed.blocks);
 
         const date = new Date(data.createdAt);
         const dateStr = date.toLocaleString();
