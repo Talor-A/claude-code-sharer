@@ -1,9 +1,9 @@
 name = "claudecode-link"
-main = "src/index.ts"
+main = "./src/index.tsx"
 compatibility_date = "2025-10-02"
 
 [assets]
-directory = "./dist"
+directory = "./public"
 binding = "ASSETS"
 
 [[d1_databases]]

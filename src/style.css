@@ -5,24 +5,18 @@
   font-style: normal;
 }
 
-:root {
+:root, html, body {
   --bg: #2C3038;
   --fg: #e0e0e0;
-  --border: #585A5D;
+  --border: rgb(104, 108, 115);
   --blue: #6db3f2;
   --purple: #a78bfa;
   --green: #153c28;
   --red: #5f2334;
   --red-fg: #f28c8c;
   --green-fg: #8cf2aa;
-}
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+    font-family: "JetBrains Mono", "Courier New", Courier, monospace;
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
@@ -30,6 +24,11 @@ body {
   background-color: var(--bg);
   color: var(--fg);
 }
+
+* {
+  box-sizing: border-box;
+}
+
 
 a {
   color: var(--fg);
@@ -138,7 +137,7 @@ button:disabled:hover {
 }
 
 .event-assistant {
-  border-left: 3px solid var(--green);
+  border-left: 3px solid var(--green-fg);
 }
 
 .error {

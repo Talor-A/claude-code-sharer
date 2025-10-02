@@ -1,21 +1,21 @@
 {
-  "name": "claudecode.link",
-  "version": "1.0.0",
+  "name": "claudecode-link",
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
-    "build": "tsc && vite build",
-    "deploy": "npm run build && wrangler deploy",
-    "db:init": "wrangler d1 create claude-sessions",
-    "db:migrations": "wrangler d1 migrations apply DB --local"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "$npm_execpath run build && vite preview",
+    "deploy": "$npm_execpath run build && wrangler deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^4.20250110.0"
+    "hono": "^4.9.9"
   },
   "devDependencies": {
-    "@types/node": "^22.10.5",
-    "typescript": "^5.7.3",
-    "vite": "^6.0.7",
-    "wrangler": "^4.41.0"
+    "@cloudflare/vite-plugin": "^1.2.3",
+    "@cloudflare/workers-types": "^4.20251001.0",
+    "vite": "^6.3.5",
+    "vite-ssr-components": "^0.5.1",
+    "wrangler": "^4.17.0"
   }
 }
