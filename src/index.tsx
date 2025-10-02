@@ -2,6 +2,9 @@ import { Hono } from 'hono'
 import { renderer } from './renderer'
 import { validator } from 'hono/validator'
 import { D1Database, RateLimit } from '@cloudflare/workers-types'
+import { logger } from 'hono/logger'
+
+
 type Env = {
   DB: D1Database
   RATE_LIMITER: RateLimit
@@ -11,6 +14,7 @@ const app = new Hono<{ Bindings: Env }>()
 
 const SAMPLE_SESSION_ID = 'ltsdgwsx';
 
+app.use(logger())
 app.use(renderer)
 
 app.get('/', (c) => {
