@@ -69,12 +69,13 @@ textarea {
   padding: 12px;
   border: 2px solid var(--border);
   color: var(--fg);
+  background-color: var(--bg);
   resize: vertical;
 }
 
 textarea:focus {
   outline: none;
-  border-color: var(--blue);
+  border-color: var(--fg);
 }
 
 button {
@@ -83,13 +84,14 @@ button {
   padding: 8px 16px;
   border: 2px solid var(--border);
   color: var(--fg);
+  background-color: var(--bg);
   cursor: pointer;
   margin-top: 12px;
 }
 
 button:hover {
-  background-color: var(--fg);
-  color: var(--bg);
+  background-color: var(--border);
+  color: var(--fg);
 }
 
 button:disabled {
@@ -99,7 +101,7 @@ button:disabled {
 
 button:disabled:hover {
   background-color: transparent;
-  color: var(--fg);
+  color: var(--border);
 }
 
 .session-content {
