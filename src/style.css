@@ -171,3 +171,7 @@ li {
 code {
   padding: 2px 4px;
 }
+
+.link-underline {
+  text-decoration: underline;
+}
