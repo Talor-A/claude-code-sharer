@@ -9,6 +9,8 @@ type Env = {
 
 const app = new Hono<{ Bindings: Env }>()
 
+const SAMPLE_SESSION_ID = 'ltsdgwsx';
+
 app.use(renderer)
 
 app.get('/', (c) => {
@@ -25,7 +27,7 @@ app.get('/', (c) => {
           for collaboration, debugging, or documentation purposes.
         </p>
         <p>
-          <a href="/s/ltsdgwsx">See a sample</a>
+          <a href={`/s/${SAMPLE_SESSION_ID}`}>See a sample</a>
         </p>
 
         <h2>How it works</h2>
@@ -42,12 +44,15 @@ app.get('/', (c) => {
           Sessions are stored anonymously. Anyone with the link can view the session.
           Do not share sensitive information like API keys, passwords, or private data.
         </p>
+        <p>
+          Uploads expire after 30 days.
+        </p>
       </div>
 
       <h2>Paste your session</h2>
       <form method="post" action="/api/sessions">
         <textarea name="content" placeholder="Paste your Claude Code session output here..." required></textarea>
-        <button type="submit">Create Share Link</button>
+        <button type="submit">Create Share Link (expires in 30d)</button>
       </form>
 
       <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); text-align: center; font-size: 12px;">
@@ -111,6 +116,15 @@ app.get('/s/:id', async (c) => {
 
   if (!row) {
     return c.text('Session not found', 404)
+  }
+
+  // Check if session is older than 30 days (except for the sample session)
+  if (id !== SAMPLE_SESSION_ID) {
+    const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+    const now = Date.now();
+    if (now - row.created_at > THIRTY_DAYS_MS) {
+      return c.text('Session not found', 404)
+    }
   }
 
   type MessageType = 'text' | 'user' | 'assistant'
