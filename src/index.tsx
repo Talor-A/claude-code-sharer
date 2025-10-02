@@ -19,7 +19,20 @@ app.use(renderer);
 app.get("/", (c) => {
   return c.render(
     <div class="container">
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+
+      }}>
+
       <h1>claudecode.link</h1>
+      <p >built by{" "}
+        <a href="https://taloranderson.com" class="link-underline">
+        talor anderson
+        </a>
+        </p>
+      </div>
 
       <h2>What is this?</h2>
       <p>
