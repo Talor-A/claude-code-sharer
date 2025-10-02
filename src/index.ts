@@ -59,6 +59,7 @@ export default class extends WorkerEntrypoint<Env> {
 
       return Response.redirect(`/s/${id}`, 302);
     } catch (error) {
+      console.error('Error creating session:', error);
       return new Response('Failed to create session', { status: 500 });
     }
   }
