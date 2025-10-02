@@ -10,3 +10,10 @@ binding = "ASSETS"
 binding = "DB"
 database_name = "claude-sessions"
 database_id = "b716eb9d-8473-4151-ac73-f1bfce4c2eaa"
+
+# wrangler.toml (wrangler v3.88.0^)
+[observability.logs]
+enabled = true
+
+
+
