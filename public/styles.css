@@ -32,12 +32,12 @@ body {
 }
 
 a {
-  color: var(--blue);
-  text-decoration: underline;
+  color: var(--fg);
+  text-decoration: none;
 }
 
-a:visited {
-  color: var(--purple);
+a:hover {
+  text-decoration: underline;
 }
 
 h1 {
