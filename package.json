@@ -1,0 +1,21 @@
+{
+  "name": "claude-code-sharer",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public --compatibility-date=2024-01-01 --d1=SESSIONS",
+    "build": "tsc && vite build",
+    "deploy": "npm run build && wrangler pages deploy dist",
+    "db:init": "wrangler d1 create claude-sessions",
+    "db:migrations": "wrangler d1 migrations apply SESSIONS --local"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20250110.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7",
+    "wrangler": "^3.103.1"
+  }
+}

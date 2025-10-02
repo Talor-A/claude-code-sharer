@@ -1,0 +1,8 @@
+name = "claude-code-sharer"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "claude-sessions"
+database_id = "your-database-id"

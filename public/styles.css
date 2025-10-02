@@ -1,0 +1,132 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 20px;
+  background-color: #fff;
+  color: #000;
+}
+
+a {
+  color: #00e;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 16px 0 8px 0;
+}
+
+p {
+  margin: 8px 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+textarea {
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-size: 14px;
+  width: 100%;
+  min-height: 400px;
+  padding: 12px;
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #00e;
+}
+
+button {
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  font-size: 14px;
+  padding: 8px 16px;
+  border: 2px solid #000;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.session-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 2px solid #000;
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin: 20px 0;
+}
+
+.error {
+  color: #d00;
+  margin: 12px 0;
+  padding: 12px;
+  border: 2px solid #d00;
+  background-color: #fee;
+}
+
+.success {
+  color: #070;
+  margin: 12px 0;
+  padding: 12px;
+  border: 2px solid #070;
+  background-color: #efe;
+}
+
+.info-box {
+  margin: 20px 0;
+  padding: 16px;
+  border: 2px solid #000;
+  background-color: #f5f5f5;
+}
+
+ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+li {
+  margin: 4px 0;
+}
+
+code {
+  background-color: #f0f0f0;
+  padding: 2px 4px;
+}

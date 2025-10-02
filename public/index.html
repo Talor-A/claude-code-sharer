@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Session Sharer</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Claude Code Session Sharer</h1>
+
+    <div class="info-box">
+      <h2>What is this?</h2>
+      <p>
+        This site allows you to share Claude Code sessions with others. Claude Code is Anthropic's
+        official CLI tool for Claude, and this service makes it easy to share conversation traces
+        for collaboration, debugging, or documentation purposes.
+      </p>
+
+      <h2>How it works</h2>
+      <ul>
+        <li>Paste your Claude Code session output below</li>
+        <li>Click "Create Share Link" to upload it</li>
+        <li>Get a unique shareable link</li>
+        <li>Share the link with anyone - no login required</li>
+      </ul>
+
+      <h2>Privacy</h2>
+      <p>
+        Sessions are stored anonymously. Anyone with the link can view the session.
+        Do not share sensitive information like API keys, passwords, or private data.
+      </p>
+    </div>
+
+    <h2>Paste your session</h2>
+    <textarea id="content" placeholder="Paste your Claude Code session output here..."></textarea>
+
+    <button id="submit">Create Share Link</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const textarea = document.getElementById('content');
+    const button = document.getElementById('submit');
+    const message = document.getElementById('message');
+
+    button.addEventListener('click', async () => {
+      const content = textarea.value.trim();
+
+      if (!content) {
+        message.innerHTML = '<div class="error">Please paste some content first.</div>';
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Creating...';
+      message.innerHTML = '';
+
+      try {
+        const response = await fetch('/api/sessions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ content })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to create session');
+        }
+
+        const url = `${window.location.origin}/s/${data.id}`;
+        message.innerHTML = `
+          <div class="success">
+            <p><strong>Session created!</strong></p>
+            <p>Share this link: <a href="${url}">${url}</a></p>
+          </div>
+        `;
+        textarea.value = '';
+      } catch (error) {
+        message.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Create Share Link';
+      }
+    });
+  </script>
+</body>
+</html>
