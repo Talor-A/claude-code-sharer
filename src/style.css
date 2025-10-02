@@ -117,7 +117,9 @@ button:disabled:hover {
 }
 
 .event > div {
-  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .diff-add {
