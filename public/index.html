@@ -35,59 +35,14 @@
     </div>
 
     <h2>Paste your session</h2>
-    <textarea id="content" placeholder="Paste your Claude Code session output here..."></textarea>
-
-    <button id="submit">Create Share Link</button>
-
-    <div id="message"></div>
+    <form method="POST" action="/api/sessions">
+      <textarea name="content" placeholder="Paste your Claude Code session output here..." required></textarea>
+      <button type="submit">Create Share Link</button>
+    </form>
 
     <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); text-align: center; font-size: 12px;">
       built by <a href="https://taloranderson.com">talor</a>
     </footer>
   </div>
-
-  <script>
-    const textarea = document.getElementById('content');
-    const button = document.getElementById('submit');
-    const message = document.getElementById('message');
-
-    button.addEventListener('click', async () => {
-      // trim leading newlines but NOT leading whitespace!
-      const content = textarea.value.replace(/^\n+/, '')
-
-      if (!content) {
-        message.innerHTML = '<div class="error">Please paste some content first.</div>';
-        return;
-      }
-
-      button.disabled = true;
-      button.textContent = 'Creating...';
-      message.innerHTML = '';
-
-      try {
-        const response = await fetch('/api/sessions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ content })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || 'Failed to create session');
-        }
-
-        const url = `/s/${data.id}`;
-        window.location.href = url;
-      } catch (error) {
-        message.innerHTML = `<div class="error">Error: ${error.message}</div>`;
-      } finally {
-        button.disabled = false;
-        button.textContent = 'Create Share Link';
-      }
-    });
-  </script>
 </body>
 </html>

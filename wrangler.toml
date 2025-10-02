@@ -1,6 +1,10 @@
 name = "claude-code-sharer"
-compatibility_date = "2024-01-01"
-pages_build_output_dir = "dist"
+main = "src/index.ts"
+compatibility_date = "2025-10-02"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
 
 [[d1_databases]]
 binding = "DB"
