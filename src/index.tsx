@@ -21,47 +21,53 @@ app.get("/", (c) => {
     <div class="container">
       <h1>claudecode.link</h1>
 
-      <div class="info-box">
-        <h2>What is this?</h2>
-        <p>
-          This site allows you to share Claude Code sessions with others. Claude
-          Code is Anthropic's official CLI tool for Claude, and this service
-          makes it easy to share conversation traces for collaboration,
-          debugging, or documentation purposes.
-        </p>
+      <h2>What is this?</h2>
+      <p>
+        This site allows you to share Claude Code sessions with others. Claude
+        Code is Anthropic's official CLI tool for Claude, and this service makes
+        it easy to share conversation traces for collaboration, debugging, or
+        documentation purposes.
+      </p>
 
-        <p>
-          <a class={"link-underline"} href={`/s/${SAMPLE_SESSION_ID}`}>
-            See a sample upload
-          </a>
-        </p>
+      <p>
+        <a class={"link-underline"} href={`/s/${SAMPLE_SESSION_ID}`}>
+          See a sample upload
+        </a>
+      </p>
 
-        <h2>How it works</h2>
-        <ul>
-          <li>
-            In Claude Code, type <code>/export</code> and choose "copy to
-            clipboard"
-          </li>
-          <li>Paste your Claude Code session output below</li>
-          <li>Click "Create Share Link" to upload it</li>
-          <li>Get a unique shareable link</li>
-          <li>Share the link with anyone - no login required</li>
-        </ul>
+      <h2>How it works</h2>
+      <ul>
+        <li>
+          In Claude Code, type{" "}
+          <code
+            style={{
+              backgroundColor:
+                "color-mix(in hsl, var(--border), var(--bg) 75%)",
+            }}
+          >
+            /export
+          </code>{" "}
+          and choose "copy to clipboard"
+        </li>
+        <li>Paste your Claude Code session output below</li>
+        <li>Click "Create Share Link" to upload it</li>
+        <li>Get a unique shareable link</li>
+        <li>Share the link with anyone - no login required</li>
+      </ul>
 
-        <h2>Privacy</h2>
-        <p>
-          Sessions are stored anonymously. Anyone with the link can view the
-          session. Do not share sensitive information like API keys, passwords,
-          or private data.
-        </p>
-        <p>Uploads expire after 30 days.</p>
-      </div>
+      <h2>Privacy</h2>
+      <p>
+        Sessions are stored anonymously. Anyone with the link can view the
+        session. Do not share sensitive information like API keys, passwords, or
+        private data.
+      </p>
+      <p>Uploads expire after 30 days.</p>
 
       <h2>Paste your session</h2>
       <form method="post" action="/api/sessions">
         <textarea
           name="content"
-          placeholder="Paste your Claude Code session output here..."
+          placeholder="type /export in claude code, then paste here"
           required
         ></textarea>
         <button type="submit">Create Share Link (expires in 30d)</button>
