@@ -12,6 +12,7 @@ export const renderer = jsxRenderer(({ children }) => {
           content="Share Claude Code sessions with others. Easy collaboration, debugging, and documentation for Claude Code CLI conversations."
         />
         <meta property="og:image" content="/ogimage.png" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <Link href="/src/style.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
