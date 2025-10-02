@@ -1,4 +1,4 @@
-# Claude Code Session Sharer
+# claudecode.link
 
 A simple site for sharing Claude Code session traces anonymously. Built with TypeScript and deployed on Cloudflare Pages.
 

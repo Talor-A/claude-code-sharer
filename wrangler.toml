@@ -1,4 +1,4 @@
-name = "claude-code-sharer"
+name = "claudecode.link"
 main = "src/index.ts"
 compatibility_date = "2025-10-02"
 
