@@ -53,13 +53,29 @@
       return { blocks }
     };
 
+    const classifyLine = (line) => {
+      // Detect diff lines: "  23 +    code" or "  23 -    code"
+      if (/^\s*\d+\s+\+/.test(line)) return 'diff-add';
+      if (/^\s*\d+\s+-/.test(line)) return 'diff-remove';
+      return 'diff-context';
+    };
+
     const renderSession = (blocks) => {
       sessionEl.innerHTML = '';
 
       blocks.forEach(block => {
         let elt = document.createElement('pre');
         const type = block.type;
-        elt.textContent = block.content;
+
+        // Split content into lines and wrap each with appropriate class
+        const lines = block.content.split('\n');
+        lines.forEach((line, index) => {
+          const lineDiv = document.createElement('div');
+          lineDiv.className = classifyLine(line);
+          lineDiv.textContent = line;
+          elt.appendChild(lineDiv);
+        });
+
         if(type === 'text') {
           elt.className = 'event event-text';
         } if(type === 'user') {

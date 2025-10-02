@@ -11,8 +11,10 @@
   --border: #585A5D;
   --blue: #6db3f2;
   --purple: #a78bfa;
-  --green: #215C2A;
-  --red: #f87171;
+  --green: #153c28;
+  --red: #5f2334;
+  --red-fg: #f28c8c;
+  --green-fg: #8cf2aa;
 }
 
 * {
@@ -113,6 +115,20 @@ button:disabled:hover {
   white-space: pre-wrap;
   word-wrap: break-word;
   line-height: 1;
+}
+
+.event > div {
+  white-space: pre;
+}
+
+.diff-add {
+  background-color: var(--green);
+  color: var(--green-fg);
+}
+
+.diff-remove {
+  background-color: var(--red);
+  color: var(--red-fg);
 }
 
 .event-user {
