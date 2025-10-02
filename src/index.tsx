@@ -1,9 +1,10 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
 import { validator } from 'hono/validator'
-import { D1Database } from '@cloudflare/workers-types'
+import { D1Database, RateLimit } from '@cloudflare/workers-types'
 type Env = {
   DB: D1Database
+  RATE_LIMITER: RateLimit
 }
 
 const app = new Hono<{ Bindings: Env }>()
@@ -23,9 +24,13 @@ app.get('/', (c) => {
           official CLI tool for Claude, and this service makes it easy to share conversation traces
           for collaboration, debugging, or documentation purposes.
         </p>
+        <p>
+          <a href="/s/ltsdgwsx">See a sample</a>
+        </p>
 
         <h2>How it works</h2>
         <ul>
+          <li>In Claude Code, type <code>/export</code> and choose "copy to clipboard"</li>
           <li>Paste your Claude Code session output below</li>
           <li>Click "Create Share Link" to upload it</li>
           <li>Get a unique shareable link</li>
@@ -63,15 +68,24 @@ function generateId(): string {
 
 app.post('/api/sessions',
   validator('form', (value, c) => {
+    const MAX_CONTENT_LENGTH = 100_000;
     const content = value['content']
     if (!content || typeof content !== 'string') {
       return c.text('Invalid!', 400)
     }
     return {
-      content,
+      content: content.slice(0, MAX_CONTENT_LENGTH),
     }
   }),
   async (c) => {
+    // Rate limit by IP address
+    const clientIP = c.req.header('CF-Connecting-IP') || 'unknown';
+    const { success } = await c.env.RATE_LIMITER.limit({ key: clientIP });
+
+    if (!success) {
+      return c.text('Rate limit exceeded. Please try again later.', 429);
+    }
+
     const { content } = c.req.valid('form')
 
 
