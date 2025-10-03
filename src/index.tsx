@@ -90,6 +90,11 @@ app.get("/", (c) => {
         built by{" "}
         <a class={"link-underline"} href="https://taloranderson.com">
           talor
+        </a>{" "}
+        |{" "}
+        view code on{" "}
+        <a class={"link-underline"} href="https://github.com/talor-a/claudecode.link">
+          github
         </a>
       </footer>
     </div>,
@@ -233,7 +238,8 @@ app.get("/s/:id", async (c) => {
       </div>
 
       <footer style="margin-top: 40px; padding-top: 20px; border-top: 2px solid var(--border); text-align: center; font-size: 12px;">
-        built by <a href="https://taloranderson.com">talor</a>
+        built by <a class="link-underline" href="https://taloranderson.com">talor</a> |{" "}
+       view code on{" "}<a class="link-underline" href="https://github.com/talor-a/claudecode.link">github</a>
       </footer>
     </div>,
   );
